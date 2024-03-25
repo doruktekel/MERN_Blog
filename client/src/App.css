@@ -25,7 +25,8 @@ header {
   gap: 20px;
 }
 .register,
-.login {
+.login,
+.logout {
   text-decoration: none;
   color: black;
 }
