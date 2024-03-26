@@ -1,15 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { UserContext } from "./contexts/UserContext";
 
 const Header = () => {
-  const [username, setUsername] = useState("");
+  const { setUserInfo, userInfo } = useContext(UserContext);
+
+  const fetchUserProfile = async () => {
+    try {
+      const response = await fetch("http://localhost:5005/user/profile", {
+        credentials: "include",
+      });
+
+      if (response.ok) {
+        const userinfo = await response.json();
+        setUserInfo(userinfo);
+      } else {
+        console.error("Failed to fetch user profile");
+      }
+    } catch (error) {
+      console.error("Error fetching user profile:", error);
+    }
+  };
 
   useEffect(() => {
-    fetch("http://localhost:5005/user/profile", {
-      credentials: "include",
-    }).then((response) =>
-      response.json().then((userinfo) => setUsername(userinfo))
-    );
+    fetchUserProfile();
   }, []);
 
   const handleLogout = () => {
@@ -17,8 +31,11 @@ const Header = () => {
       credentials: "include",
       method: "POST",
     });
-    setUsername(null);
+    setUserInfo(null);
   };
+
+  const username = userInfo?.username;
+
   return (
     <header>
       <div className="header-left">
@@ -28,6 +45,7 @@ const Header = () => {
       </div>
       {username ? (
         <div className="header-right">
+          <p>Welcome {username.toUpperCase()}</p>
           <Link to="/register" className="register">
             Create new post
           </Link>
