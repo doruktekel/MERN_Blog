@@ -65,7 +65,14 @@ header {
 .post .info .parag {
   line-height: 1.5rem;
 }
-
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  width: 600px;
+  text-align: center;
+}
 form.login,
 form.register {
   display: flex;
@@ -76,15 +83,24 @@ form.register {
   text-align: center;
 }
 input {
+  width: 100%;
   padding: 6px 8px;
-  border: 1px solid;
+  border: 1px solid lightgrey;
   border-radius: 5px;
 }
 button {
   padding: 6px 8px;
-  border: 1px solid;
+  border: 1px solid grey;
   border-radius: 5px;
-  border: none;
   color: #fff;
   background-color: grey;
+}
+button:hover {
+  cursor: pointer;
+  background-color: transparent;
+  color: grey;
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.ql-editor {
+  min-height: 200px;
 }

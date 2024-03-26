@@ -46,7 +46,7 @@ const Header = () => {
       {username ? (
         <div className="header-right">
           <p>Welcome {username.toUpperCase()}</p>
-          <Link to="/register" className="register">
+          <Link to="/createpost" className="register">
             Create new post
           </Link>
           <Link className="logout" to="/" onClick={handleLogout}>
