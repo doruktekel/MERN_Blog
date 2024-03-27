@@ -1,77 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Post from "../Post";
 
 const Home = () => {
+  const [posts, setPosts] = useState([]);
+
+  const fetchdata = async () => {
+    const res = await fetch("http://localhost:5005/user/post");
+    const data = await res.json();
+    setPosts(data);
+  };
+
+  useEffect(() => {
+    fetchdata();
+  }, []);
+
   return (
-    <>
-      <div className="container">
-        <div className="post">
-          <div className="image">
-            <img
-              src="https://techcrunch.com/wp-content/uploads/2021/03/linkedin-clubhouse-wave.jpg?w=430&h=230&crop=1"
-              alt=""
-            />
-          </div>
-          <div className="info">
-            <h2>LinkedIn wants a piece of Wordle’s success</h2>
-            <p className="by">
-              <span>Doruk Tekel </span>
-              21.03.2024 13:38
-            </p>
+    <div className="container">
+      {posts.length > 0 && posts.map((post) => <Post {...post} />)}
 
-            <p className="parag">
-              Hello, and welcome back to Equity, the podcast about the business
-              of startups, where we unpack the numbers and nuance behind the
-              headlines. This is our Monday show, in which we take a look back
-              at ...
-            </p>
-          </div>
-        </div>
-        <div className="post">
-          <div className="image">
-            <img
-              src="https://techcrunch.com/wp-content/uploads/2021/03/linkedin-clubhouse-wave.jpg?w=430&h=230&crop=1"
-              alt=""
-            />
-          </div>
-          <div className="info">
-            <h2>LinkedIn wants a piece of Wordle’s success</h2>
-            <p className="by">
-              <span>Doruk Tekel </span>
-              21.03.2024 13:38
-            </p>
-
-            <p className="parag">
-              Hello, and welcome back to Equity, the podcast about the business
-              of startups, where we unpack the numbers and nuance behind the
-              headlines. This is our Monday show, in which we take a look back
-              at ...
-            </p>
-          </div>
-        </div>
-        <div className="post">
-          <div className="image">
-            <img
-              src="https://techcrunch.com/wp-content/uploads/2021/03/linkedin-clubhouse-wave.jpg?w=430&h=230&crop=1"
-              alt=""
-            />
-          </div>
-          <div className="info">
-            <h2>LinkedIn wants a piece of Wordle’s success</h2>
-            <p className="by">
-              <span>Doruk Tekel </span>
-              21.03.2024 13:38
-            </p>
-
-            <p className="parag">
-              Hello, and welcome back to Equity, the podcast about the business
-              of startups, where we unpack the numbers and nuance behind the
-              headlines. This is our Monday show, in which we take a look back
-              at ...
-            </p>
-          </div>
-        </div>
-      </div>
-    </>
+      {/* <Post /> */}
+    </div>
   );
 };
 

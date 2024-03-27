@@ -51,6 +51,7 @@ const CreatePost = () => {
     const res = await fetch("http://localhost:5005/user/post", {
       method: "POST",
       body: data,
+      credentials: "include",
     });
 
     if (res.ok) {
