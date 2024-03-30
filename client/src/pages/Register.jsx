@@ -8,9 +8,26 @@ const Register = () => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
+
+    if (username.length < 5 || password.length < 5) {
+      toast.error("Username and password must be at least 5 characters long", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      return;
+    }
     const res = await fetch("http://localhost:5005/user/register", {
       method: "POST",
-      body: JSON.stringify({ username, password }),
+      body: JSON.stringify({
+        username,
+        password,
+      }),
       headers: { "Content-Type": "application/json" },
     });
 
@@ -56,6 +73,9 @@ const Register = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
+        <p className="redflag">
+          *Username and password must be at least 5 characters long
+        </p>
         <button type="submit">Register</button>
       </form>
     </div>

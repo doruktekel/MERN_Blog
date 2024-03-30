@@ -8,6 +8,8 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { UserContextProvider } from "./contexts/UserContext";
 import CreatePost from "./pages/CreatePost";
+import SinglePost from "./pages/SinglePost";
+import EditPost from "./pages/EditPost";
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
             <Route path="/register" element={<Register />}></Route>
             <Route path="/login" element={<Login />}></Route>
             <Route path="/createpost" element={<CreatePost />}></Route>
+            <Route path="/post/:id" element={<SinglePost />}></Route>
+            <Route path="/edit/:id" element={<EditPost />}></Route>
           </Route>
         </Routes>
         <ToastContainer />

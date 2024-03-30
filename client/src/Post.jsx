@@ -1,6 +1,8 @@
 import { formatISO9075 } from "date-fns";
+import { Link } from "react-router-dom";
+import SinglePost from "./pages/SinglePost";
 
-const Post = ({ content, cover, title, summary, createdAt, author }) => {
+const Post = ({ content, cover, title, summary, createdAt, author, _id }) => {
   const date = new Date(createdAt);
   const formattedDate = `${date.getFullYear()}-${(date.getMonth() + 1)
     .toString()
@@ -8,12 +10,19 @@ const Post = ({ content, cover, title, summary, createdAt, author }) => {
   return (
     <div className="post">
       <div className="image">
-        <img src={`http://localhost:5005/` + cover} alt="" />
+        <Link to={`/post/${_id}`}>
+          <img src={`http://localhost:5005/` + cover} alt="" />
+        </Link>
       </div>
+
       <div className="info">
-        <h2>{title}</h2>
+        <Link to={`/post/${_id}`}>
+          <h2>{title}</h2>
+        </Link>
         <p className="by">
-          <span>{author.username} </span>
+          <span>
+            {author.username.charAt(0).toUpperCase() + author.username.slice(1)}{" "}
+          </span>
           {formatISO9075(new Date(createdAt))}
         </p>
 
