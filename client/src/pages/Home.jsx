@@ -3,11 +3,19 @@ import Post from "../Post";
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const fetchdata = async () => {
-    const res = await fetch("http://localhost:5005/user/post");
-    const data = await res.json();
-    setPosts(data);
+    setLoading(true);
+    try {
+      const res = await fetch("http://localhost:5005/user/post");
+      const data = await res.json();
+      setPosts(data);
+      setLoading(false);
+    } catch (error) {
+      console.log("Error", error);
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -16,7 +24,8 @@ const Home = () => {
 
   return (
     <div className="container">
-      {posts.length > 0 && posts.map((post) => <Post {...post} />)}
+      {posts.length > 0 &&
+        posts.map((post) => <Post key={post._id} {...post} />)}
 
       {/* <Post /> */}
     </div>
