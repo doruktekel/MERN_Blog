@@ -14,7 +14,9 @@ const EditPost = () => {
   const getData = async () => {
     setLoading(true);
     try {
-      const response = await fetch(`http://localhost:5005/user/post/${id}`);
+      const response = await fetch(
+        `https://mern-blog-server-61xo.onrender.com//user/post/${id}`
+      );
       const data = await response.json();
       setTitle(data.title);
       setSummary(data.summary);
@@ -41,11 +43,14 @@ const EditPost = () => {
       data.set("file", files?.[0]);
     }
 
-    const response = await fetch("http://localhost:5005/user/post", {
-      method: "PUT",
-      body: data,
-      credentials: "include",
-    });
+    const response = await fetch(
+      "https://mern-blog-server-61xo.onrender.com/user/post",
+      {
+        method: "PUT",
+        body: data,
+        credentials: "include",
+      }
+    );
     if (response.ok) {
       navigate(`/post/${id}`);
     }

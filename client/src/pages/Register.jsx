@@ -25,14 +25,17 @@ const Register = () => {
       });
       return;
     }
-    const res = await fetch("http://localhost:5005/user/register", {
-      method: "POST",
-      body: JSON.stringify({
-        username: cleanedUsername,
-        password: cleanedPassword,
-      }),
-      headers: { "Content-Type": "application/json" },
-    });
+    const res = await fetch(
+      "https://mern-blog-server-61xo.onrender.com/user/register",
+      {
+        method: "POST",
+        body: JSON.stringify({
+          username: cleanedUsername,
+          password: cleanedPassword,
+        }),
+        headers: { "Content-Type": "application/json" },
+      }
+    );
 
     if (res) {
       navigate("/login");

@@ -8,7 +8,9 @@ const Home = () => {
   const fetchdata = async () => {
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:5005/user/post");
+      const res = await fetch(
+        "https://mern-blog-server-61xo.onrender.com/user/post"
+      );
       const data = await res.json();
       setPosts(data);
       setLoading(false);
