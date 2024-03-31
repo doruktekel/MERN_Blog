@@ -6,10 +6,13 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
+  const cleanedUsername = username.replace(/\s+/g, "");
+  const cleanedPassword = password.replace(/\s+/g, "");
+
   const handleRegister = async (e) => {
     e.preventDefault();
 
-    if (username.length < 5 || password.length < 5) {
+    if (cleanedUsername.length < 5 || cleanedPassword.length < 5) {
       toast.error("Username and password must be at least 5 characters long", {
         position: "top-right",
         autoClose: 5000,
@@ -25,8 +28,8 @@ const Register = () => {
     const res = await fetch("http://localhost:5005/user/register", {
       method: "POST",
       body: JSON.stringify({
-        username,
-        password,
+        username: cleanedUsername,
+        password: cleanedPassword,
       }),
       headers: { "Content-Type": "application/json" },
     });
