@@ -7,9 +7,12 @@ const Header = () => {
 
   const fetchUserProfile = async () => {
     try {
-      const response = await fetch("http://localhost:5005/user/profile", {
-        credentials: "include",
-      });
+      const response = await fetch(
+        "https://mern-blog-server-61xo.onrender.com/user/profile",
+        {
+          credentials: "include",
+        }
+      );
 
       if (response.ok) {
         const userinfo = await response.json();
@@ -27,7 +30,7 @@ const Header = () => {
   }, []);
 
   const handleLogout = () => {
-    fetch("http://localhost:5005/user/logout", {
+    fetch("https://mern-blog-server-61xo.onrender.com/user/logout", {
       credentials: "include",
       method: "POST",
     });

@@ -1,5 +1,4 @@
 import { useState } from "react";
-import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useNavigate } from "react-router-dom";
 import Editor from "../Editor";
@@ -20,11 +19,14 @@ const CreatePost = () => {
     data.set("content", content);
     data.set("file", files[0]);
 
-    const res = await fetch("http://localhost:5005/user/post", {
-      method: "POST",
-      body: data,
-      credentials: "include",
-    });
+    const res = await fetch(
+      "https://mern-blog-server-61xo.onrender.com/user/post",
+      {
+        method: "POST",
+        body: data,
+        credentials: "include",
+      }
+    );
 
     if (res.ok) {
       navigate("/");
