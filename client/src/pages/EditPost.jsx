@@ -15,7 +15,7 @@ const EditPost = () => {
     setLoading(true);
     try {
       const response = await fetch(
-        `https://mern-blog-server-61xo.onrender.com//user/post/${id}`
+        `https://mern-blog-server-61xo.onrender.com/user/post/${id}`
       );
       const data = await response.json();
       setTitle(data.title);
